@@ -21,7 +21,7 @@ $pdf->Cell(10,20,"Apellidos:            " . $_GET['Apellidos']);
 $pdf-> Ln(10);
 $pdf->Cell(10,20,"Empresa:             " . $_GET['Empresa']);
 $pdf-> Ln(10);
-$pdf->Cell(10,20,"Representante:   " .$_GET['Representante']);
+$pdf->Cell(10,20,"Representante:    " .$_GET['Representante']);
 $pdf-> Ln(10);
 $pdf->Cell(10,20,"Fecha:                  " . $_GET['Fecha']);
 
