@@ -10,7 +10,7 @@ $pdf = new FPDF();
 $pdf->AddPage();
   
 // Set the font for the text
-$pdf->SetFont('Arial', 'B', 18);
+$pdf->SetFont('Arial', 'i', 10);
   
 // Prints a cell with given text 
 $pdf->Cell(60,20,'Carta de recomendacion');

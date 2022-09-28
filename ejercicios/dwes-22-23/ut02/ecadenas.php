@@ -1,4 +1,4 @@
-<?php
+ <?php
 $text="";
 $letra=0;
 $vocales=0;
