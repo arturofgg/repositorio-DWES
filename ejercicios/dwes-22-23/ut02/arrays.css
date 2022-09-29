@@ -1,0 +1,15 @@
+@media (min-width:768px){
+    body{
+        padding-left: 17cm;
+    }
+    table, tr, td{
+        border: 1px solid black;
+    }
+}
+
+@media (MAX-width:768px){
+    table, tr, td{
+        border: 1px solid red;
+        
+    }
+}
