@@ -5,7 +5,7 @@ $fechas=[
     1 => ['16:00-16:55','DWEC','ITGS_DAW','DIW','EIE_DAW','DWES'],
     2 => ['16:55-17:50','DWEC','DAW','DIW','DAW','DWES'],
     3 => ['17:50-18:45','DWEC','DAW','DIW','DAW','DWES'],
-    4 => [' ','RECREO','RECREO','RECREO','RECREO','RECREO'],
+    4 => ['RECREO','RECREO','RECREO','RECREO','RECREO','RECREO'],
     5 => ['19:10-20:05','EIE_DAW','DIW','DWES','DWES','DWEC'],
     6 => ['20:05-21:00','EIE_DAW','DIW','DWES','DWES','DWEC'],
     7 => ['21:00-21:55','ITGS_DAW','DIW','DWES','DWES','DWEC'],
@@ -27,10 +27,11 @@ $fechas=[
         <?php for($j=0; $j<count($fechas); $j++){ ?>
             <tr>
             <?php for($i=0; $i<count($fechas[$j]); $i++){ ?>
-                <td><?php echo $fechas[$j][$i]?></td>
+            <td> 
+                <?php echo $fechas[$j][$i]?> 
+            </td>
              <?php } ?>
             </tr>
-            <br>
         <?php } ?>
         </table>
     

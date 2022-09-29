@@ -1,19 +1,32 @@
 @media (min-width:768px){
     body{
         padding-left: 17cm;
+        background-attachment: fixed;
+        background-image: url("https://i.pinimg.com/originals/2b/c6/4b/2bc64bd946a5f156d0ad320dc4b1e057.gif")  ;
+        color:white;
     }
 
     table, tr, td{
         border: 1px solid black;
+       
+        background-attachment: fixed;
     }
-
-    td{
-        color: BLUe;
+    table{
+        font-family:sans-serif;
+        background-image: url("https://c.tenor.com/van2dzNbfA4AAAAM/perrito-juguet%C3%B3n.gif")  ;
+    } 
+    td:hover{
+        background-image: url("https://i.gifer.com/Rjnc.gif");
+        width:200px;
+        height:200px;
     }
 }
 
 @media (MAX-width:768px){
     table, tr, td{
         border: 1px solid red;
+    }
+    table{
+        box-shadow: 6px 3px 3px lightgrey;
     }
 }
