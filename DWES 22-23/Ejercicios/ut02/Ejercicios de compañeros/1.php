@@ -42,3 +42,58 @@ $personas= [
     ["Amparo", 0],
 ];
 
+function mister($valor,$clave){
+    
+    if($valor[1]==0){
+        echo "Sra " .$valor[0]."\n";
+    }else echo "Sr " .$valor[0]."\n";
+}
+
+$presentacion=array_walk($personas, 'mister');
+
+$comida = [
+    0=>["Banana",3,56],
+    1=>["Chuleta",1,256],
+    2=>["Pan",1,90]
+   ];
+   
+   function calTotales($acumulador,$array) {
+       $acumulador += $array[1] * $array[2];
+       return $acumulador;
+   }
+   
+   echo(array_reduce($comida,"calTotales")); 
+
+   $resultado = array_map(function($pep){
+    return (($pep[1]== 1) ? "Señor ":"Señora "). $pep[0];
+}
+,$personas);
+
+array_walk($resultado,function($sexo){
+    echo "$sexo<br>";
+}
+);
+
+echo "<br><br>";
+echo "Hombres:\n";
+$hombre = array_filter($personas,function($sexo){
+    return  $sexo[1] == 1;
+}
+);
+echo "<br>";
+array_walk($hombre,function($sexo){
+    echo "$sexo[0]<br>";
+}
+);
+
+echo "<br>";
+echo "Mujeres:\n";
+$mujer = array_filter($personas,function($sexo){
+    return  $sexo[1] == 0;
+}
+);
+echo "<br>";
+array_walk($mujer,function($sexo){
+    echo "$sexo[0]<br>";
+}
+);
