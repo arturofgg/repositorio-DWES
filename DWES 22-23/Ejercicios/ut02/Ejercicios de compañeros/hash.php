@@ -6,9 +6,10 @@ for($a=97; $a<123; $a++ ){
             for($d=97; $d<123; $d++ ){
                 if(password_verify(chr($d).chr($c).chr($b).chr($a),'$2y$10$0GNiidCkeO/VBBHPH0DP6e5tgz6l/FIOxs1RcFloJrXuTYmmAsW72')==1){
                     echo("si " . chr($d).chr($c).chr($b).chr($a));
-                }else echo("no");
+                }
             }
         }
     }
 }
+//hora
 ?>
