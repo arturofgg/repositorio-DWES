@@ -1,6 +1,7 @@
 <?php
 
-/*Funciones:  array_intersect, array_search y array_replace.
+/*
+2 Funciones:  array_intersect, array_search y array_replace.
 Enunciado: Designa dos arrays con varios números. Algunos de ellos deberán coincidir entre ambas arrays. A continuación:
     Crea un tercer array que contenga los números en común de los primeros dos. Habrá posiciones nulas.
     Crea un cuarto array con las posiciones que le falten al anterior y un número asignado a cada una, y júntalo con el anterior.
