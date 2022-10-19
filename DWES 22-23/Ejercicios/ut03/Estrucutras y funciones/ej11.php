@@ -9,17 +9,21 @@
 function genArray(...$valores){
     $arraux=[];
     $cont=2;
+    $i=0;
     foreach($valores as $value){
+        
         if(gettype($value)=="integer"){
-            $arraux=pow($value,$cont);
+            $arraux[$i]=pow($value,$cont);
             $cont++;
         }
-        else if(gettype($value)=="float"){
-            $arraux=$value*(-1);
-        }else if(){
-            
-        }
+        else if(gettype($value)=="double"){
+            $arraux[$i]=$value*(-1);
+        }else if(gettype($value)=="string"){
+            $arraux[$i]= strtoupper($value);
+        }else $arraux[$i]=$value;
+        $i++;
     }
+    return $arraux;
 }
 
 $xd = genArray(3, "h", 'hola', [1,2,3], [1], "h");
