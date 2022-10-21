@@ -66,14 +66,18 @@ class CuentaBancaria{
         $cuenta->ingresar($cantidad);
     }  
 
-    public function mostrar(){
-        return $this->numerocuenta." ".$this->nombre." ".$this->saldo. "</br>";   
+    public function bancaRota(){
+        $this->retirar($this->saldo);
     }
 
     public function unirCon($cuenta){
         $this->ingresar($cuenta->saldo());
-        
+        $cuenta->bancaRota();
+        $cuenta->numerocuenta=-1;
+    }
 
+    public function mostrar(){
+        return $this->numerocuenta." ".$this->nombre." ".$this->saldo. "</br>";   
     }
 }
 ?>
