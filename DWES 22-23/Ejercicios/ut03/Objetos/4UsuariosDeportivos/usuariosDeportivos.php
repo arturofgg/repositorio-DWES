@@ -129,9 +129,9 @@ class Usuario {
         }
     }
 
-    function ctrlNivel(){
+    /*function ctrlNivel(){
         if($this->ctrlResul())
-    }
+    }*/
 }
 
 ?>
