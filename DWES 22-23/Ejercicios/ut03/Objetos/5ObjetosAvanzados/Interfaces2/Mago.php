@@ -14,7 +14,7 @@ abstract class Mago implements videojuegoF {
 
 }
 
-Class MagoBlanco extends Mago implements videojuegoF{
+class MagoBlanco extends Mago{
     
     public function aod($eleccion){
         if($eleccion==("ataque de luz")){
@@ -25,7 +25,7 @@ Class MagoBlanco extends Mago implements videojuegoF{
     }
 }
 
-Class MagoOscuro extends Mago implements videojuegoF{
+class MagoOscuro extends Mago{
     
     public function aod($eleccion){
         if($eleccion==("ataque de oscuridad")){

@@ -8,11 +8,7 @@ class Humano implements videojuegoF{
     use getpos;
 
     private $nombre;
-    private $posicion = array(
-        "x" => 0,
-        "y" => 0,
-        "z" => 0
-    );
+    private $posicion;
 
     public function aod($eleccion){
         if($eleccion==("puñetazo")){
