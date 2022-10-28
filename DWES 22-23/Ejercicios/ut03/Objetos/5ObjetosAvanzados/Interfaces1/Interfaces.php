@@ -14,10 +14,7 @@ interface PlataformaPago
     public function estableceConexión():bool;
     public function compruebaSeguridad():bool;
     public function pagar(string cuenta, int cantidad);
-}
-
-Haz una implementación del pago con BancoMalvado. Simplemente escribe:
-
+}public function estableceConexión():bool
     conexión BancoMalvado
     conexión segura BancoMalvado
     Pago realizado BancoMalvado
