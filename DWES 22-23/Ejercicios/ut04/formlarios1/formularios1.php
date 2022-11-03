@@ -5,12 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>1_formulario</title>
+    <style>
+        body{
+            margin:30px;
+        }
+    </style>
 </head>
 <body>
+    <div>
     SERVER: <?php print_r($_SERVER); ?> <hr>
     GET: <?php print_r($_GET); ?> <hr>
     POST: <?php print_r($_POST); ?> <hr>
+    </div>
 
     <form action="formularios1.php" name="formulario">
         Nombre:   <input type="text" id="name" name="user_name"></br>
