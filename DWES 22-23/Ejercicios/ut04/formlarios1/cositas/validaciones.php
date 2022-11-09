@@ -19,7 +19,8 @@ if(empty($_POST["nombre"])){
 
 
 //fecha
-    if(posteriorA($POST["fecha"])==false){
+$hola=posteriorA($POST["fecha"]);
+    if($hola==false){
         
     }
 
