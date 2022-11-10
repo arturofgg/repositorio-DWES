@@ -1,5 +1,7 @@
 <?php
 use Fecha;
+use Genero;
+
 
 //CINE
 
@@ -12,17 +14,17 @@ $expLugar = "[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?
 if(empty($_POST["nombre"])){
     $errores["nombre"] = 'Escribe un nombre';
 }else {
-    if(preg_match($expLugar, $_POST['nombre'])){
-        $lugar = $_POST["nombre"];
+    if(preg_match($expNombre, $_POST['nombre'])){
+        $nombre = $_POST["nombre"];
     }else $errores["nombre"] = 'Solo se permiten letras, espacios y guiones';
 }
 
 
 //fecha
-$hola=posteriorA($POST["fecha"]);
-    if($hola==false){
-        
-    }
+$fechatoDate = Fecha::fromDDMMYYYY($_POST["fecha"]);
+if($fechatoDate->despuesDeHoy()==false || empty($_POST["fecha"])){
+    $errores["fecha"] = "Escribe una fecha valida";
+}else $fecha = $_POST["fecha"];
 
 
 //lugar :)
@@ -36,45 +38,54 @@ if(empty($_POST["lugar"])){
 
 
 //tarifa :)
-if(empty($_POST["tarifa"]) || is_int($_POST["tarifa"]==false)){
+if(empty($_POST["tarifa"]) || !is_int($_POST["tarifa"])){
     $errores["tarifa"] = 'Escribe una tarifa';
 }else {
     if($_POST["tarifa"]>=0 && $_POST["tarifa"]<=20){
-        $lugar = $_POST["lugar"];
-    }else $errores["lugar"] = 'Tarifa maxima = 20€';
+        $tarifa = $_POST["tarifa"];
+    }else $errores["tarifa"] = 'Tarifa maxima = 20€';
 }
 
 
 //aforo :)
-if(empty($_POST["aforo"]) || is_int($_POST["aforo"]==false)){
+if(empty($_POST["aforo"]) || !is_int($_POST["aforo"])){
     $errores["aforo"] = 'Escribe un aforo';
 }else {
     if($_POST["aforo"]>=0 && $_POST["aforo"]<=150){
-        $lugar = $_POST["aforo"];
+        $aforo = $_POST["aforo"];
     }else $errores["aforo"] = 'Aforo maximo = 150 personas';
 }
 
 
 //nombrepelicula :)
-if(isset($_POST["nombrepelicula"]) && $_POST["nombrepelicula"]!=""){
-    $nombre = $_POST["nombrepelicula"];
+if(isset($_POST["nombrepelicula"]) && !empty($_POST["nombrepelicula"])){
+    $nombrepelicula = $_POST["nombrepelicula"];
 }else {
     $errores["nombrepelicula"] = 'Escribe el nombre de la película';
 }
 
 
 //duracion
-if(empty($_POST["duracion"]) || is_int($_POST["duracion"]==false)){
+if(empty($_POST["duracion"]) || !is_int($_POST["duracion"])){
     $errores["duracion"] = 'Escribe la duración de la película';
 }else {
-    if($_POST["duracion"]>=0){
-        $lugar = $_POST["aforo"];
-    }else $errores["aforo"] = 'La duración no puede ser negativa';
+    if($_POST["duracion"]>0){
+        $duracion = $_POST["duracion"];
+    }else $errores["duracion"] = 'La duración no puede ser negativa';
 }
 
 
 //genero
-
+$correcto=true;
+$cont=0;
+if(!empty($_POST["genero[]"])){
+    for($i=0; $i<count($_POST["genero[]"]) && $correcto; $i++){
+        if(Genero::fromValue($_POST["genero[".$i."]"]) == Genero::NONE){
+            $errores["genero"] = "Genero no valido";
+            $correcto=false;
+        }else $genero[$cont++] = $_POST["genero[".$i."]"];  
+    }  
+}else $errores["genero[]"] = "No ha introducido ningun genero";
 
 //CONCIERTO
 
@@ -82,14 +93,17 @@ if(empty($_POST["duracion"]) || is_int($_POST["duracion"]==false)){
 if(empty($_POST["nombre"])){
     $errores["nombre"] = 'Escribe un nombre';
 }else {
-    if(preg_match($expLugar, $_POST['nombre'])){
-        $lugar = $_POST["nombre"];
+    if(preg_match($expNombre, $_POST['nombre'])){
+        $nombre = $_POST["nombre"];
     }else $errores["nombre"] = 'Solo se permiten letras, espacios y guiones';
 }
 
 
 //fecha
-    if($POST["fecha"])
+$fechatoDate = Fecha::fromDDMMYYYY($_POST["fecha"]);
+if($fechatoDate->despuesDeHoy()==false || empty($_POST["fecha"])){
+    $errores["fecha"] = "Escribe una fecha valida";
+}else $fecha = $_POST["fecha"];
 
 
 //lugar :)
@@ -103,42 +117,85 @@ if(empty($_POST["lugar"])){
 
 
 //tarifa :)
-if(empty($_POST["tarifa"]) || is_int($_POST["tarifa"]==false)){
+if(empty($_POST["tarifa"]) || !is_int($_POST["tarifa"])){
     $errores["tarifa"] = 'Escribe una tarifa';
 }else {
-    if($_POST["tarifa"]>=0 && $_POST["tarifa"]<=20){
-        $lugar = $_POST["lugar"];
-    }else $errores["lugar"] = 'Tarifa maxima = 20€';
+    if($_POST["tarifa"]>=0 && $_POST["tarifa"]<=120){
+        $tarifa = $_POST["tarifa"];
+    }else $errores["tarifa"] = 'Tarifa maxima = 120€';
 }
 
 
 //aforo :)
-if(empty($_POST["aforo"]) || is_int($_POST["aforo"]==false)){
+if(empty($_POST["aforo"]) || !is_int($_POST["aforo"])){
     $errores["aforo"] = 'Escribe un aforo';
 }else {
-    if($_POST["aforo"]>=0 && $_POST["aforo"]<=150){
-        $lugar = $_POST["aforo"];
-    }else $errores["aforo"] = 'Aforo maximo = 150 personas';
+    if($_POST["aforo"]>=0 && $_POST["aforo"]<=500){
+        $aforo = $_POST["aforo"];
+    }else $errores["aforo"] = 'Aforo maximo = 500 personas';
 }
 
 
-//nombrepelicula :)
-if(isset($_POST["nombrepelicula"]) && $_POST["nombrepelicula"]!=""){
-    $nombre = $_POST["nombrepelicula"];
+//nombregrupo :)
+if(isset($_POST["nombregrupo"]) && !empty($_POST["nombregrupo"])){
+    $nombregrupo = $_POST["nombregrupo"];
 }else {
-    $errores["nombrepelicula"] = 'Escribe el nombre de la película';
+    $errores["nombregrupo"] = 'Escribe el nombre de el grupo';
 }
 
 
 //duracion
-if(empty($_POST["duracion"]) || is_int($_POST["duracion"]==false)){
+if(empty($_POST["duracion"]) || !is_int($_POST["duracion"])){
     $errores["duracion"] = 'Escribe la duración de la película';
 }else {
-    if($_POST["duracion"]>=0){
-        $lugar = $_POST["aforo"];
-    }else $errores["aforo"] = 'La duración no puede ser negativa';
+    if($_POST["duracion"]>0){
+        $duracion = $_POST["duracion"];
+    }else $errores["duracion"] = 'La duración no puede ser negativa';
 }
 
 
-//genero
+//generomusical
+$correcto=true;
+$cont=0;
+if(!empty($_POST["generomusical[]"])){
+    for($i=0; $i<count($_POST["generomusical[]"]) && $correcto; $i++){
+        if(EstiloMusical::fromValue($_POST["generomusical[".$i."]"]) == EstiloMusical::NONE){
+            $errores["generomusical"] = "Genero musical no valido";
+            $correcto=false;
+        }else $generomusical[$cont++] = $_POST["generomusical[".$i."]"];  
+    }  
+}else $errores["generomusical[]"] = "No ha introducido ningun genero musical";
+
+function validar()
+{
+    if (!empy($_POST)) {
+        if (isset($_POST["enviar"])) {
+            if ($POST["enviar"] == CINE) {
+                // Creo y valido datpos de cine
+            }
+            else if ($_POST["enviar"]  === CONCIERTO) {
+                // Creo y valido concierto
+            }
+            else {
+                throw new Exception ("Tipo no valido");
+            }
+        }
+    }
+}
+
+const ERRORES = [];
+
+function validarEvento() { 
+    // Datos propios de evento
+}
+
+function validarCine() {
+    validarEvento(); 
+    // Datos propios de cine
+}
+
+function validarConcierto() {
+    validarEvento(); 
+    // Datos propios de concierto
+}
 ?>
