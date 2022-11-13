@@ -1,4 +1,5 @@
 <?php
+/*
 use Fecha;
 use Genero;
 
@@ -155,4 +156,5 @@ if(empty($_POST["duracion"]) || !is_int($_POST["duracion"])){
 
 
 //genero
+*/
 ?>
