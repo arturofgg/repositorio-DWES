@@ -18,12 +18,12 @@ if(empty($_POST["nombre"])){
 }
 
 
-//fecha
+/*/fecha
 $hola=posteriorA($POST["fecha"]);
     if($hola==false){
         
     }
-
+*/
 
 //lugar :)
 if(empty($_POST["lugar"])){
@@ -141,4 +141,6 @@ if(empty($_POST["duracion"]) || is_int($_POST["duracion"]==false)){
 
 
 //genero
+
+
 ?>

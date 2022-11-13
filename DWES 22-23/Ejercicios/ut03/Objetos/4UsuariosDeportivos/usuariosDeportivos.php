@@ -111,7 +111,7 @@ class Usuario {
         $this->nivel = 0;
         $this->resultados = [];
     }
-
+/*
    function ctrlResul(Resultado $r){
         $contv;
         $contd;
