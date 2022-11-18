@@ -8,6 +8,22 @@ testConnectionPDO.php
 try {
     $mbd = new PDO('mysql:host=localhost;dbname=proyectoEventos', "arturo", "arturo12345");
 
+
+
+    $stmt = $mbd->prepare("SELECT * FROM Ciclistas");
+$stmt->execute();
+$clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+foreach($clientes as $cliente){
+    echo $cliente['nombre'] . "<br>";
+}
+
+
+
+
+
+
+
+
     // Utilizar la conexión aquí
     $resultado = $mbd->query('SELECT * FROM Ciclistas');
 
