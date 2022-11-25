@@ -1,5 +1,7 @@
 <?php
 
+print_r(PDO::getAvailableDrivers());
+
 function pintarDatos()
 {
     try {
@@ -10,8 +12,9 @@ function pintarDatos()
 
         //RECORRE LOS CAMPOS QUE ELIJAS
 ?>
+    <?php $a=0; ?>
         <table>
-            <?php foreach ($cosas as $cliente) { ?>
+            <?php foreach ($cosas as $cliente) { $a++ ?>
                 <tr>
                     <?= "<td> " . $cliente['id'] . "</td><td><a href='b1redirect.php'> " . $cliente['nombre'] . "</a></td><td> " . $cliente['num_trofeos'] . "</td>"; ?>
                 </tr>
