@@ -57,68 +57,53 @@ spl_autoload_register(function ($class) {
 <!--_______________________________________________________________________________________________________________________________________________________________-->
 
 <?php
+$errores = [];
 
-//VALIDACIONES
- //VALIDACIONES GENERALES
-
-function validarGeneral(ExpReg $regex, string $campo) : bool{
-    return isset($_POST[$campo]) && preg_match($regex->value, $_POST[$campo]);
-}
-
-//VALIDACIONES ESPECIFICAS
-
-//VALIDAR NOMBRE
-function validarNombre(string $campoNombre) : bool{
-    return validarGeneral(ExpReg::NOMBRE, $campoNombre);
-}
-
-//VALIDAR EMAIL
-function validarEmail(string $campoEmail) : bool{
-    return validarGeneral(ExpReg::CORREO, $campoEmail);
-}
-
-//VALIDAR NUMERO
-function validarNumero(string $campoNumero) : bool{
-    return validarGeneral(ExpReg::NUMERO, $campoNumero);
-}
-
-//VALIDAR FECHA SI ES DESPUES DE HOY!
-function validarFecha(string $campoFecha) : bool{
-    return  (Fecha::fromYYYYMMDD($_POST[$campoFecha]))->despuesDeHoy();  
-}
-
-//VALIDAR RADIO
- /*function validarRadio(string $campoRadio) : bool{
-    if (isset($_POST[$campoRadio])){
-        
-    }
-}*/
-
-//VALIDAR SELECT
-function validarSelect(string $campoSelect) : bool{
-    return ($_POST[$campoSelect] == "select1") || ($_POST[$campoSelect] == "select2") || ($_POST[$campoSelect] == "select3");    
-}
-
-
-//VALIDAR CHECKBOX
-
-
-//VALIDACION FINAL
 if (isset($_POST["submit"])){
-    /*
-    if(validarNombre("nombre") && validarEmail("email") && validarNumero($_POST["numero"]) && validarFecha($_POST["fecha"])  && validarRadio($_POST["radio"])  && validarSelect($_POST["select"])  &&  validarCheckbox($_POST["checkbox"])){
-        echo("hola");
-    }else var_dump($_POST);
-    */
-    
-    if(validarSelect("select")){     
-        echo "YES";
-    }else echo ("Mierdas");
+
+
+    //VALIDAR NOMBRE CON ARRAY DE ERRORES
+    if (isset($_POST["nombre"])){
+        if (preg_match(ExpReg::NOMBRE->$value, $_POST["nombre"])){
+            $nombre = $_POST["nombre"];
+        }else $errores["nombre"] = "Escribe el nombre correctamente";
+    }else $errores["nombre"] = "Debes escribir un nombre";
+
+
+    //VALIDAR EMAIL CON ARRAY DE ERRORES
+    if (isset($_POST["email"])){
+        if (preg_match(ExpReg::CORREO->$value, $_POST["email"])){
+            $email = $_POST["email"];
+        }else $errores["email"] = "Escribe el email correctamente";
+    }else $errores["email"] = "Debes escribir un email";
+
+
+    //VALIDAR NUMERO CON ARRAY DE ERRORES
+    if (isset($_POST["numero"])){
+        if (preg_match(ExpReg::NUMERO->$value, $_POST["numero"])){
+            $numero = $_POST["numero"];
+        }else $errores["numero"] = "Escribe un numero correctamente";
+    }else $errores["numero"] = "Debes escribir un numero";
+
+
+    //VALIDAR FECHA SI ES DESPUES DE HOY! CON ARRAY DE ERRORES
+    if (Fecha::fromYYYYMMDD($_POST["fecha"])->despuesDeHoy()){
+        $fecha = $_POST["fecha"];
+    }else $errores["fecha"] = "Escribe una fecha posterior a la actual";
+
+
+    //VALIDAR RADIO CON ARRAY DE ERRORES
+
+
+    //VALIDAR SELECT CON ARRAY DE ERRORES
+    if (($_POST["select"] == "select1") || ($_POST["select"] == "select2") || ($_POST["select"] == "select3")){
+        $select = $_POST["select"];
+    }else $errores["select"] = "No esta dentro de las opciones del SELECT";
+
+
+    //VALIDAR CHECKBOX CON ARRAY DE ERRORES
+
 }
-
-
-
-
 
 ?>
 
