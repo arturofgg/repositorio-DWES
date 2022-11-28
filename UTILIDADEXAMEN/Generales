@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace UTILIDADEXAMEN;
 
 //Hacer un numero primo
 function esPrimo($n){
@@ -21,5 +22,4 @@ function esPrimo($n){
 chr(rand(ord("a"), ord("z")));
 
 //Sacar un numero aleatorio
-
 ?>
