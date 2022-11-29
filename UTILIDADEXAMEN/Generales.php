@@ -10,7 +10,7 @@ chr(rand(ord("a"), ord("z")));
 
 
 //SACAR UN NUMERO ALEATORIO DEL 0 AL 7
-rand(0,7);
+mt_rand(0,7);
 
 
 //SACAR VOCALES Y CONSONANTES DE UNA CADENA
