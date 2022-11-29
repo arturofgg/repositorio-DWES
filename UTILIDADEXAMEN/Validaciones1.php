@@ -45,10 +45,10 @@ spl_autoload_register(function ($class) {
         </select><br><br>
 
         <label>CHECKBOX:</label><br>
-        <input type="checkbox" id="checkbox1" name="checkbox1" value="checkbox1"> <label for="checkbox1">checkbox1</label><br>
-        <input type="checkbox" id="checkbox2" name="checkbox2" value="checkbox2"> <label for="checkbox2">checkbox2</label><br>
-        <input type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3"> <label for="checkbox3">checkbox3</label><br>
-        <input type="checkbox" id="checkbox4" name="checkbox4" value="checkbox4"> <label for="checkbox4">checkbox4</label><br><br>
+        <input type="checkbox" id="checkbox1" name="checkbox[]" value="checkbox1"> <label for="checkbox1">checkbox1</label><br>
+        <input type="checkbox" id="checkbox2" name="checkbox[]" value="checkbox2"> <label for="checkbox2">checkbox2</label><br>
+        <input type="checkbox" id="checkbox3" name="checkbox[]" value="checkbox3"> <label for="checkbox3">checkbox3</label><br>
+        <input type="checkbox" id="checkbox4" name="checkbox[]" value="checkbox4"> <label for="checkbox4">checkbox4</label><br><br>
 
         <input type="submit" id="submit" name="submit" value="enviar"> 
     </form>
@@ -88,39 +88,79 @@ function validarFecha(string $campoFecha) : bool{
 }
 
 //VALIDAR RADIO
- /*function validarRadio(string $campoRadio) : bool{
-    if (isset($_POST[$campoRadio])){
-        
-    }
-}*/
+ function validarRadio(string $campoRadio) : bool {
+    return ($_POST[$campoRadio] == "radio1" || $_POST[$campoRadio] == "radio2" ||$_POST[$campoRadio] == "radio3");
+ }
 
 //VALIDAR SELECT
 function validarSelect(string $campoSelect) : bool{
     return ($_POST[$campoSelect] == "select1") || ($_POST[$campoSelect] == "select2") || ($_POST[$campoSelect] == "select3");    
 }
 
-
 //VALIDAR CHECKBOX
+function validarCheckbox($campoCheckbox=[]) : bool{
+    $arr_bool = [];
+
+    for($i=0; $i<4; $i++){
+        if(($_POST[$campoCheckbox[$i]]) == "checkbox" . $i+1){
+            $arr_bool[$i] = "checkbox" . $i+1;
+        }
+    }
+
+    for($i=0; $i<4; $i++){
+        $cont=0;
+        if(in_array(("checkbox" . $i+1),$arr_bool)){
+            $cont++;
+        }
+    }
+
+    if($cont==4){
+        return (true);
+    }else return (false);
+}
+
+if(validarCheckbox("checkbox[]")){
+    $checkbox=$_POST["checkbox[]"];
+    echo("bien");
+}else echo("Hay alguna opcion del checkbox que no pertenece a las opciones<br>");
 
 
 //VALIDACION FINAL
 if (isset($_POST["submit"])){
-    /*
-    if(validarNombre("nombre") && validarEmail("email") && validarNumero($_POST["numero"]) && validarFecha($_POST["fecha"])  && validarRadio($_POST["radio"])  && validarSelect($_POST["select"])  &&  validarCheckbox($_POST["checkbox"])){
-        echo("hola");
-    }else var_dump($_POST);
-    */
+/*
     if(validarNombre("nombre")){
         $nombre=$_POST["nombre"];
         echo("bien");
-    }else echo("El nombre esta mal escrito");
+    }else echo("El nombre esta mal escrito<br>");
 
     if(validarEmail("email")){
         $email=$_POST["email"];
         echo("bien");
-    }else echo("El email esta mal escrito");
+    }else echo("El email esta mal escrito<br>");
+    
+    if(validarNumero("numero")){
+        $numero=$_POST["numero"];
+        echo("bien");
+    }else echo("El numero esta mal escrito<br>");
 
-}
+    if(validarFecha("fecha")){
+        $fecha=$_POST["fecha"];
+        echo("bien");
+    }else echo("La fecha debe ser posterior a la actual<br>");
+
+    if(validarRadio("radio")){
+        $radio=$_POST["radio"];
+        echo("bien");
+    }else echo("Hay un radio que no pertenece a las opciones<br>");
+
+    if(validarSelect("select")){
+        $select=$_POST["select"];
+        echo("bien");
+    }else echo("Hay alguna opcion del select que no pertenece a las opciones<br>");
+
+    
+*/
+}   
 
 ?>
 

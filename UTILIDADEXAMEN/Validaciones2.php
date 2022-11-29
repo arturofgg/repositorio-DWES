@@ -58,7 +58,8 @@ spl_autoload_register(function ($class) {
 
 <?php
 $errores = [];
-
+ 
+//VALIDACION GENERAL DE TODO
 if (isset($_POST["submit"])){
 
 
