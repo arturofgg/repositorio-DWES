@@ -115,6 +115,32 @@ class AccesoDatos{
 
         return $exito;
     }
+
+    public function deleteCiclistaByID(int $id){
+
+        $ciclista = [];
+
+        try {
+        
+            $stmt = $this->conn->prepare('DELETE FROM Ciclistas WHERE id = :id' );
+        
+            if($stmt->execute(
+                array(':id' => $id)
+            )){
+
+                $ciclista = $stmt->fetchAll();
+    
+            }else{
+                //Not good
+            }
+
+
+        } catch (\Throwable $th) {
+            //Excapcion al hacer la consulta
+        }
+
+        return $ciclista;
+    }
 }
 
 
@@ -140,6 +166,13 @@ print_r($a->insertCiclista(
         "num_trofeos" => 16
     )
 ));
+
+echo "</pre>";
+
+echo "<pre>";
+
+print_r($a->deleteCiclistaByID(4));
+    
 
 echo "</pre>";
 
