@@ -18,6 +18,8 @@ class AccesoDatos{
         
         return self::$datos;
     }
+    
+
 
     private function __construct(){
 
