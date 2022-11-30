@@ -178,7 +178,7 @@ $m = strval(23);
 $n = intval("23");
 
 
-//USO DEL & EN PARAMETROS DE FUNCIONE
+//USO DEL & EN PARAMETROS DE FUNCIONES
 
 function addCadena(&$cadenaParametro){
     $cadenaParametro .= "y me llamo Paco";
