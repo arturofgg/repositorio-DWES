@@ -3,29 +3,33 @@
 formulario con 3 cookies para config (cambiar el color de texto, del fondo y otra para el nombre)
 Usar include para menu para navegar entre paginas
 No validar XSS 
-Separar logica de presentacion */
+Separar logica de presentacion 
+cambairlo por sesiones
+adivinar el numero entre 0 y 10 con 3 intentos  
+hacer un captcha*/
 
 include "menu.php";
+session_start();
 
 if(isset($_POST["bcolor"])){
-    setcookie("bcolor",$_POST["bcolor"]);
     $bcolor = $_POST["bcolor"];
-}else if(isset($_COOKIE["bcolor"]) && (!isset($_POST["bcolor"]))){
-    $bcolor = $_COOKIE["bcolor"];
+    $_SESSION["bcolor"] =  $_POST["bcolor"];
+}else if(isset($_SESSION["bcolor"]) && (!isset($_POST["bcolor"]))){
+    $bcolor = $_SESSION["bcolor"];
 }
 
 if(isset($_POST["fcolor"])){
-    setcookie("fcolor",$_POST["fcolor"]);
     $fcolor = $_POST["fcolor"];
-}else {
-    $fcolor = $_COOKIE["fcolor"];
+    $_SESSION["fcolor"] =  $fcolor;
+}else if(isset($_SESSION["fcolor"]) && (!isset($_POST["fcolor"]))){
+    $fcolor = $_SESSION["fcolor"];
 }
 
 if(isset($_POST["user"])){
-    setcookie("user",$_POST["user"]);
     $user = $_POST["user"];
-}else if (isset($_COOKIE["user"]) && (!isset($_POST["user"]))){
-    $user = $_COOKIE["user"];
+    $_SESSION["user"] =  $user;
+}else if (isset($_SESSION["user"]) && (!isset($_POST["user"]))){
+    $user = $_SESSION["user"];
 }else $user = "anonimo";
 
 //$page;
