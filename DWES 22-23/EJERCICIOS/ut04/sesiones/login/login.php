@@ -17,12 +17,6 @@ if(isset($_POST["submit"])) {
         $login = clean_input($_POST["login"]);
     }
 
-foreach($key as $value){
-    $arrayEmails[] = ('SELECT email FROM users.sql');
-}
-
-//if ($login == ){
-
 }
 
     if (!filter_var($login, FILTER_VALIDATE_EMAIL)) {
@@ -36,10 +30,6 @@ foreach($key as $value){
     }
 
     // $sql="SELECT  FROM usuarios WHERE user = ? AND password=?";
-
-    //CONCEPTOS
-    //$email[] = 'SELECT email FROM users.sql';
-    //$password = password_verify('$_POST["password"]', 'SELECT pass FROM users.sql WHERE email = $email');
     
     // Consulta preparada!
     // Traed registro de usuario con ese email
@@ -54,7 +44,7 @@ foreach($key as $value){
     }else{
         $errorList[] = "Clave errónea";
     }
-}
+
 
 
 if(isset($_GET["error"])){
