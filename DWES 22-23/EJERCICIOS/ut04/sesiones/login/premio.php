@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['user'])){
-    header('Location: login.php?error=Área privada&url=premio.php&');
+    header('Location: login.php?error=Área privada&url=premio.php');
     exit;
 }
 
