@@ -1,4 +1,5 @@
 <?php
+require('db.php');
 
 function clean_input($data) {
   $data = trim($data);
@@ -8,15 +9,15 @@ function clean_input($data) {
 }
 
 $login = "";
-$pass = "";
+$password = "";
+$url = "";
 $errorList = [];
 
 
-if(isset($_POST["submit"])) {
-    if(isset($_POST["login"])){
-        $login = clean_input($_POST["login"]);
-    }
-
+if(isset($_GET["url"])) {
+  $url = $_GET['url'];
+} else if(isset($_POST['url'])){
+  $url = $_POST['url'];
 }
 
     if (!filter_var($login, FILTER_VALIDATE_EMAIL)) {
@@ -28,7 +29,10 @@ if(isset($_POST["submit"])) {
     if(isset($_POST["password"])){
         $password = clean_input($_POST["password"]);
     }
-
+      //RECORRO LA TABLA Y GUARDO LOS ELEMENTOS
+      $consulta = $db->prepare('SELECT * FROM usuarios WHERE email = :email: LIMIT 1');
+      $consulta->execute([':email:' =>$login]);
+      $user = $consulta->fetch();
     // $sql="SELECT  FROM usuarios WHERE user = ? AND password=?";
     
     // Consulta preparada!
@@ -36,10 +40,15 @@ if(isset($_POST["submit"])) {
     // Haced un hash de la contraseña
     // Comparad hash con hash
 
-    if( $login == "asd@asd.es" && $password == "1234" ){
+    if(isset($user) && password_verify($password, $user['pass'])){
         // Bonus: Semos pogramadores güenos. 
         // Haced un reenvío a la página privada que quería visitar.
-        header('Location: premio.php');
+        $_SESSION['user'] = $login;
+        if($url != ""){
+            header('Location: '. $url);
+        }else{
+          header('Location: premio.php');
+        }
         exit;
     }else{
         $errorList[] = "Clave errónea";
@@ -61,6 +70,7 @@ if(isset($_GET["error"])){
     <p>
       <label for="login">Email:</label>
       <input type="text" name="login" id="login" value="<?=$login?>">
+      <input type="hidden" name="url" id="url" value="<?=$url?>">
     </p>
 
     <p>
