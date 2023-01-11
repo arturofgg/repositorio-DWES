@@ -3,7 +3,7 @@ require('./db.php');
 
 session_start();
 if (isset($_SESSION['user'])) {
-    header("Location: premio.php");
+    header("Location: foro.php");
     die();
 }
 
@@ -43,18 +43,17 @@ if (isset($_POST["submit"])) {
 }
 
 //RECORRO LA TABLA Y GUARDO LOS ELEMENTOS
-    $consulta = $mbd->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
-    $consulta->execute([':email' => $login]);
-    $user = $consulta->fetch();
-    print_r($user);
-// $sql="SELECT  FROM usuarios WHERE user = ? AND password=?";
+$consulta = $mbd->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
+$consulta->execute([':email' => $login]);
+$user = $consulta->fetch();
+print_r($user);
 
 if (isset($user) && password_verify($password, $user['pass'])) {
     $_SESSION["user"] = $login;
     if ($url != "") {
         header('Location: ' . $url);
     } else {
-        header('Location: premio.php');
+        header('Location: foro.php');
     }
     exit;
 } else {
@@ -101,10 +100,3 @@ if (isset($_GET["error"])) {
 </body>
 
 </html>
-
-
-<!---
-<script>alert(document.cookie);</script>
-"<script>alert(document.cookie);</script>
-"><script>alert(document.cookie);</script>
---->
