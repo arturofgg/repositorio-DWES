@@ -1,12 +1,7 @@
 <?php
-session_start();
-
-if(!isset($_SESSION['user'])){
-    header('Location: login.php?error=Área privada&url=premio.php');
-    exit;
-}
-
+require("./private_area.php");
 ?>
+
 <html>
 <head>
   <link rel="stylesheet" type="text/css" media="all" href="css/estilo.css">

@@ -1,6 +1,6 @@
 <?php
 
-require_once('private_area.php');
+require_once('./private_area.php');
 
 ?>
 
