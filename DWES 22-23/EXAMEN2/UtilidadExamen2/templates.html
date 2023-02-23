@@ -1,0 +1,66 @@
+Template básico de Django:
+
+Este es un template básico que utiliza la estructura de los archivos de Django y se conecta con el sistema de plantillas de Django. Se utiliza para crear nuevas páginas en tu sitio web.
+
+php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+
+    Template de formulario de Django:
+
+Este es un template que se utiliza para crear formularios HTML en Django. Incluye las etiquetas HTML necesarias para que los formularios sean compatibles con Django y el archivo CSS de Bootstrap para darles estilo.
+
+bash
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock %}
+
+    Template de lista de objetos de Django:
+
+Este es un template que se utiliza para mostrar una lista de objetos en Django. Incluye una estructura de tabla HTML básica y un bucle for que itera sobre una lista de objetos para mostrarlos en la tabla.
+
+javascript
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for objeto in lista_objetos %}
+                <tr>
+                    <td>{{ objeto.id }}</td>
+                    <td>{{ objeto.nombre }}</td>
+                    <td>{{ objeto.descripcion }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No hay objetos.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
