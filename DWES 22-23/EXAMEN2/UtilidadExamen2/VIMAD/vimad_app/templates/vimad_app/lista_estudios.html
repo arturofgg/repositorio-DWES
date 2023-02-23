@@ -1,0 +1,9 @@
+{% if lista_estudios_porfecha %}
+    <ul>
+    {% for estudio in lista_estudios_porfecha %}
+        <li><a href="/vimad_app/estudio/{{ estudio.nombre }}/">{{ estudio.nombre }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay estudios</p>
+{% endif %}

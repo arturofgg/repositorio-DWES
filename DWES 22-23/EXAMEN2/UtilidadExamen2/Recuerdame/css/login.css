@@ -1,0 +1,68 @@
+:root {
+    --bg-color: lightcyan;
+}
+
+body{
+    background-color: var(--bg-color);
+}
+.container{
+    margin-top: 22vh;
+}
+.campo{
+    padding-bottom: 2vh;
+    text-align: right;
+}
+.barra{
+    display: flex;
+    justify-content:center;
+    margin-top: 1vh;
+}
+hr{
+    width: 100vw;
+    z-index: 1;
+}
+h3{
+    text-align: center;
+}
+h5{
+    position: absolute;
+    background-color: var(--bg-color);
+    padding: 5px;
+    z-index: 2;
+    margin-top: -2px;
+}
+input{
+    padding-left: 10px;
+    border-radius: 5px;
+    border: .2px solid ;
+    width: 100%;
+}
+
+.error{
+    color:red;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#recuerdame{
+    position: absolute;
+    margin-left: -53.5vw;
+    margin-top: .7vh;
+}
+#mal{
+    margin-top: 5vh;
+    font-size: 36px;
+    font-weight: bold;
+}
+img{
+    width: 8vw;
+    height: 10vh;
+}
+
+@media screen and (max-width: 767px) {
+    .campo{
+        text-align: left;
+    }
+    label{
+        padding-bottom: 1vh;
+    }
+}

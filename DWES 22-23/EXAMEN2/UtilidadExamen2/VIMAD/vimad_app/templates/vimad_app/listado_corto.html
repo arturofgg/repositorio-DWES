@@ -1,0 +1,20 @@
+<h1 style="text-transform: uppercase;">{{ corto.titulo }}</h1>
+<img src="{{corto.imagen.url}}" height="100px" width="100px" >
+<ul>
+    <h2>DIRECTORES</h2>
+{% for director in directores %}
+    <li><a href="/vimad_app/director/{{ director.nombre }}/">{{ director.nombre }}</a></li>
+{% endfor %}
+
+    <h2>ACTORES</h2>
+{% for actor in actores %}
+    <li><a href="/vimad_app/actor/{{ actor.nombre }}/">{{ actor.nombre }}</a></li>
+{% endfor %}
+
+    <h2>ESTUDIOS</h2>
+{% for estudio in estudios %}
+    <!--ESTE a href TIENE ('NOMBRE DE LA VISTA') (LO QUE QUIERO QUE SE MUESTRE POR PANTALLA) -->
+    <li><a href="{% url 'vimad:detalle_estudio' estudio.nombre %}">{{ estudio.nombre }}</a></li>
+{% endfor %}
+
+</ul>
