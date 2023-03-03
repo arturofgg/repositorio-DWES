@@ -1,0 +1,14 @@
+{% extends 'incidencias/index.html' %}
+
+{% block content %}
+
+<center>
+    <h1 style:"margin-top: 40px;">
+        {{ mensaje_exito }}
+    </h1>
+    <br><br><br>
+    <a href="{% url 'incidencias:listado' %}">Volver al listado</a>
+</center>
+
+
+{% endblock content %}  

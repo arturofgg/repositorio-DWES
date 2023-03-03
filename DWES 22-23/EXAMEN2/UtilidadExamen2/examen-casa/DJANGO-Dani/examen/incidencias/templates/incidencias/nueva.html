@@ -1,0 +1,22 @@
+{% extends 'incidencias/index.html' %}
+
+{% block content %}
+
+<h1>{{ estacion.nombre }} ({{ estacion.linea.nombre }})</h1>
+
+<form action="{% url 'incidencias:nueva' estacion.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Reportar nueva incidencia</h1></legend>
+        <div>
+            <label for=""></label>
+            <textarea name="tipo_incidencia" rows="5"></textarea>
+        </div>
+    </fieldset>
+    <input type="submit" value="Enviar">
+    {% if error != "" %}<p><strong> {{ error }} </strong></p>{% endif %}
+</form>
+
+<a href="{% url 'incidencias:listado' %}">Volver al listado</a>
+
+{% endblock content %}  
