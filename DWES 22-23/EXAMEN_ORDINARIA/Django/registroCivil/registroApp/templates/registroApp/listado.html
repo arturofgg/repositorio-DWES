@@ -1,0 +1,10 @@
+{% block content %}
+<table border="1px">
+    <tr><td>Apellido pareja</td><td>Lugar</td><td>Fecha</td></tr>
+    {% for pareja in parejas %}
+    <tr>
+        <td>{{ pareja.Integrante1.apellido1 }}  {{ pareja.Integrante2.apellido1 }}</td><td>{{ pareja.lugar }}</td><td>{{ pareja.fecha }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}  
